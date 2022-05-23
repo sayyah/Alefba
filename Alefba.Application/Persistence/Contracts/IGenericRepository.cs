@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Alefba.Application.Persistence.Contracts
+﻿namespace Alefba.Application.Persistence.Contracts
 {
-    public interface IGenericRepository<T> where T: class
+    public interface IGenericRepository<T> where T : class
     {
         Task<T> Get(Guid id);
         Task<IReadOnlyList<T>> GetAll();

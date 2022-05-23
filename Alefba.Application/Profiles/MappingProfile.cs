@@ -1,13 +1,14 @@
-﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Alefba.Application.DTOs;
+using Alefba.Domain;
+using AutoMapper;
 
 namespace Alefba.Application.Profiles
 {
-    public class MappingProfile:Profile
+    public class MappingProfile : Profile
     {
+        public MappingProfile()
+        {
+            CreateMap<Exchange, ExchangeDto>().ReverseMap();
+        }
     }
 }
