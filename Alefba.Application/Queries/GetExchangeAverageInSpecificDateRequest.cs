@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Alefba.Application.Queries
 {
-    public class GetExchangeListRequest : IRequest<List<ExchangeDto>>
+    public class GetExchangeAverageInSpecificDateRequest : IRequest<double>
     {
         public DateTime startDateTime { get; set; }
         public DateTime endDateTime { get; set; }

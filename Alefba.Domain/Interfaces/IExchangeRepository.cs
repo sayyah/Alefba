@@ -5,6 +5,6 @@ namespace Alefba.Domain.Interfaces
 {
     public interface IExchangeRepository : IGenericRepository<Exchange>
     {
-        Task<IReadOnlyList<Exchange>> GetInSpecificDate(DateTime startDateTime, DateTime endDateTime);
+        Task<double> GetInSpecificDate(DateTime startDateTime, DateTime endDateTime);
     }
 }

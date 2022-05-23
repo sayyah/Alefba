@@ -8,7 +8,7 @@ namespace Alefba.Application.Profiles
     {
         public MappingProfile()
         {
-            CreateMap<Exchange, Crea>().ReverseMap();
+            CreateMap<Exchange, ExchangeDto>().ReverseMap();
         }
     }
 }

@@ -5,6 +5,8 @@ namespace Alefba.Application.Features.Exchange.Requests.Commands
 {
     public class CreateExchangeCommand : IRequest<Guid>
     {
-        public ExchangeDto ExchangeDto { get; set; }
+        public int Rate { get; set; }
+        public DateTime DateTime { get; set; }
+        public string Symbol { get; set; }
     }
 }

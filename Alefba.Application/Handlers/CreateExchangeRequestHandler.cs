@@ -1,4 +1,5 @@
 ﻿using Alefba.Application.Features.Exchange.Requests.Commands;
+using Alefba.Application.Validators;
 using Alefba.Domain.Entities;
 using Alefba.Domain.Interfaces;
 using AutoMapper;
@@ -24,7 +25,13 @@ namespace Alefba.Application.Handlers
 
         public async Task<Guid> Handle(CreateExchangeCommand request, CancellationToken cancellationToken)
         {
-            var exchange = _mapper.Map<Exchange>(request.ExchangeDto);
+            var validator = new CreateExchangeCommandValidator();
+            var validatorResult = await validator.ValidateAsync(request);
+
+            if (validatorResult.IsValid == false)
+                throw new Exception();
+
+            var exchange = _mapper.Map<Exchange>(request);
             exchange = await _exchangeRepository.Add(exchange);
             return exchange.Id;
         }
