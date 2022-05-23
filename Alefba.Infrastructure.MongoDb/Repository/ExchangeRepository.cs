@@ -1,13 +1,8 @@
 ﻿using Alefba.Domain.Entities;
-using Alefba.Domain.Interfaces.Repository;
+using Alefba.Domain.Interfaces;
 using Alefba.Infrastructure.MongoDb.DbContexts;
 using Alefba.Infrastructure.MongoDb.Repository.Base;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Alefba.Infrastructure.MongoDb.Repository
 {

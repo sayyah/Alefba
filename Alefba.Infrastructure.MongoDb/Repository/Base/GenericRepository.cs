@@ -1,4 +1,5 @@
-﻿using Alefba.Domain.Interfaces;
+﻿using Alefba.Domain;
+using Alefba.Domain.Interfaces;
 using Alefba.Infrastructure.MongoDb.DbContexts;
 using Alefba.Infrastructure.MongoDb.Utilities;
 using MongoDB.Driver;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Alefba.Infrastructure.MongoDb.Repository.Base
 {
-    public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity: BaseDomainEntity
     {
         private readonly IDbContext _context;
         protected readonly IMongoCollection<TEntity> DbSet;
@@ -18,32 +19,37 @@ namespace Alefba.Infrastructure.MongoDb.Repository.Base
         protected GenericRepository(IDbContext context)
         {
             _context = context;
-            DbSet = _context.GetCollection<TEntity>(typeof(TEntity).GetName());
+            DbSet = (IMongoCollection<TEntity>)_context.GetCollection<TEntity>(typeof(TEntity).GetName());
         }
 
-        public Task<TEntity> Get(Guid id)
+        public async Task<TEntity?> GetById(Guid id,CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var data = await DbSet.FindAsync(Builders<TEntity>.Filter.Eq(f => f.Id, id), cancellationToken: cancellationToken);
+
+            return data.SingleOrDefault();
         }
 
-        public Task<IReadOnlyList<TEntity>> GetAll()
+        public void Add(TEntity entity,CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _context.AddCommand(async () => await DbSet.InsertOneAsync(entity, cancellationToken: cancellationToken));
         }
 
-        public Task<TEntity> Add(TEntity entity)
+        public async Task<TEntity> Update(TEntity entity, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var filter = Builders<TEntity>.Filter.Eq(f => f.Id, entity.Id);
+
+            _context.AddCommand(async () =>
+            {
+                await DbSet.ReplaceOneAsync(filter, entity, cancellationToken: cancellationToken);
+            });
+
+            return (await GetById(entity.Id, cancellationToken))!;
         }
 
-        public Task<TEntity> Update(TEntity entity)
+        public virtual void Delete(TEntity entity, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<TEntity> Delete(TEntity entity)
-        {
-            throw new NotImplementedException();
+            _context.AddCommand(async () =>
+             await DbSet.DeleteOneAsync(f => f.Id.Equals(entity.Id), cancellationToken: cancellationToken));
         }
     }
 }

@@ -1,16 +1,14 @@
 ﻿using Alefba.Application.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Alefba.Domain.Interfaces;
+using Alefba.Infrastructure.MongoDb.Repository;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Alefba.Infrastructure.MongoDb.DbContexts
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly IDbContext _context;
+        private  IExchangeRepository _exchangeRepository;
 
         public UnitOfWork(IDbContext context)
         {
@@ -23,5 +21,12 @@ namespace Alefba.Infrastructure.MongoDb.DbContexts
                 throw new CustomException(HttpStatusCode.InternalServerError);
         }
 
+        public IExchangeRepository ExchangeRepository => _exchangeRepository ??= new ExchangeRepository(_context);
+
+        public void Dispose()
+        {
+            _context.Dispose();
+            GC.SuppressFinalize(this);
+        }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Alefba.Infrastructure
 {
-    public class WebScraper: IWebScraper<CreateEchangeCommand>
+    public class WebScraper<CreateEchangeCommand> : IWebScraper<CreateEchangeCommand>
     {
         public Task<CreateEchangeCommand> GetDate()
         {

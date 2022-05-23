@@ -16,13 +16,13 @@ namespace Alefba.Application.Handlers
 {
     public class CreateExchangeRequestHandler : IRequestHandler<CreateExchangeCommand, Guid>
     {
-        private readonly IExchangeRepository _exchangeRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public CreateExchangeRequestHandler(IExchangeRepository exchangeRepository, IMapper mapper)
+        public CreateExchangeRequestHandler(IMapper mapper, IUnitOfWork unitOfWork)
         {
-            _exchangeRepository = exchangeRepository;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Guid> Handle(CreateExchangeCommand request, CancellationToken cancellationToken)
@@ -34,9 +34,9 @@ namespace Alefba.Application.Handlers
                 throw new ValidationException(validatorResult);
 
             var exchange = _mapper.Map<Exchange>(request);
-            exchange = await _exchangeRepository.Add(exchange);
+            _unitOfWork.ExchangeRepository.Add(exchange, cancellationToken);
+            await _unitOfWork.Commit();
 
-            
             return exchange.Id;
         }
 

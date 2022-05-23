@@ -2,10 +2,9 @@
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {
-        Task<TEntity> Get(Guid id);
-        Task<IReadOnlyList<TEntity>> GetAll();
-        Task<TEntity> Add(TEntity entity);
-        Task<TEntity> Update(TEntity entity);
-        Task<TEntity> Delete(TEntity entity);
+        Task<TEntity?> GetById(Guid id, CancellationToken cancellationToke);
+        void Add(TEntity entity, CancellationToken cancellationToke);
+        Task<TEntity> Update(TEntity entity, CancellationToken cancellationToke);
+        void Delete(TEntity entity, CancellationToken cancellationToke);
     }
 }

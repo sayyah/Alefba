@@ -1,13 +1,9 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Alefba.Domain.Interfaces;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Alefba.Infrastructure.MongoDb.DbContexts
 {
@@ -61,7 +57,7 @@ namespace Alefba.Infrastructure.MongoDb.DbContexts
             return _commands.Count;
         }
 
-        public IMongoCollection<T> GetCollection<T>(string name)
+        public object GetCollection<T>(string name)
         {
             return Database.GetCollection<T>(name);
         }

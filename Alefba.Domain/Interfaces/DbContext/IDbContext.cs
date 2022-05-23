@@ -1,10 +1,8 @@
-﻿using MongoDB.Driver;
-
-namespace Alefba.Infrastructure.MongoDb.DbContexts
+﻿namespace Alefba.Domain.Interfaces
 {
     public interface IDbContext
     {
-        IMongoCollection<T> GetCollection<T>(string name);
+        object GetCollection<T>(string name);
         void AddCommand(Func<Task> func);
         Task<int> SaveChanges();
         void Dispose();

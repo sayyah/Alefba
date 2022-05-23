@@ -12,7 +12,7 @@ namespace Alefba.Infrastructure
     {
         public static IServiceCollection ConfigureInfrastructureServices(this IServiceCollection services)
         {
-            services.AddTransient(typeof(IWebScraper<>),typeof(WebScraper));
+            services.AddTransient(typeof(IWebScraper<>),typeof(WebScraper<>));
 
             return services;
         }
