@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Exchange\Handlers\Commands\" />
+    <Folder Include="Responses\" />
   </ItemGroup>
 
 </Project>

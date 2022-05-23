@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Alefba.Application
+namespace Alefba.Application.Queries
 {
-    public class GetExchangeListRequest:IRequest<List<ExchangeDto>>
+    public class GetExchangeListRequest : IRequest<List<ExchangeDto>>
     {
         public DateTime startDateTime { get; set; }
         public DateTime endDateTime { get; set; }

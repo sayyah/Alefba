@@ -1,4 +1,4 @@
-﻿namespace Alefba.Domain
+﻿namespace Alefba.Domain.Entities
 {
     public class Exchange : BaseDomainEntity
     {

@@ -1,5 +1,5 @@
 ﻿using Alefba.Application.DTOs;
-using Alefba.Domain;
+using Alefba.Domain.Entities;
 using AutoMapper;
 
 namespace Alefba.Application.Profiles

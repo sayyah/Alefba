@@ -1,5 +1,7 @@
 ﻿using Alefba.Application.DTOs;
 using Alefba.Application.Persistence.Contracts;
+using Alefba.Application.Queries;
+using Alefba.Domain.Interfaces;
 using AutoMapper;
 using MediatR;
 using System;
@@ -8,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Alefba.Application.Features.Exchange.Handlers.Queries
+namespace Alefba.Application.Handlers
 {
-    public class GetExchangeListInSpecificDateRequestHandler:IRequestHandler<GetExchangeListRequest,List<ExchangeDto>>
+    public class GetExchangeListInSpecificDateRequestHandler : IRequestHandler<GetExchangeListRequest, List<ExchangeDto>>
     {
         private readonly IExchangeRepository _exchangeRepository;
         private readonly IMapper _mapper;
