@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Alefba.Application.Handlers
 {
-    public class CreateExchangeRequestHandler : IRequestHandler<CreateExchangeCommand, CreateResponse>
+    public class CreateExchangeRequestHandler : IRequestHandler<CreateExchangeCommand, Guid>
     {
         private readonly IExchangeRepository _exchangeRepository;
         private readonly IMapper _mapper;
@@ -25,29 +25,19 @@ namespace Alefba.Application.Handlers
             _mapper = mapper;
         }
 
-        public async Task<CreateResponse> Handle(CreateExchangeCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(CreateExchangeCommand request, CancellationToken cancellationToken)
         {
-            var response = new CreateResponse();
-
             var validator = new CreateExchangeCommandValidator();
             var validatorResult = await validator.ValidateAsync(request);
 
             if (validatorResult.IsValid == false)
-            {
-                //throw new ValidationException(validatorResult);
-
-                response.Success = false;
-                response.Message = "Creation failed";
-                response.Errors = validatorResult.Errors.Select(q=>q.ErrorMessage).ToList();
-            }
+                throw new ValidationException(validatorResult);
 
             var exchange = _mapper.Map<Exchange>(request);
             exchange = await _exchangeRepository.Add(exchange);
 
-            response.Success = true;
-            response.Message = "Creation successful";
-            response.Id= exchange.Id;
-            return response;
+            
+            return exchange.Id;
         }
 
     }

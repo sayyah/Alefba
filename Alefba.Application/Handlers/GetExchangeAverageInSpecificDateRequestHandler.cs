@@ -1,6 +1,5 @@
 ﻿using Alefba.Application.DTOs;
 using Alefba.Application.Exceptions;
-using Alefba.Application.Persistence.Contracts;
 using Alefba.Application.Queries;
 using Alefba.Application.Validators;
 using Alefba.Domain.Entities;
@@ -34,7 +33,7 @@ namespace Alefba.Application.Handlers
             if (validatorResult.IsValid == false)
                 throw new ValidationException(validatorResult);
 
-            var average = await _exchangeRepository.GetInSpecificDate(request.startDateTime, request.endDateTime);
+            var average = await _exchangeRepository.GetAverageInSpecificDate(request.startDateTime, request.endDateTime);
 
             if (average == 0.0)
                 throw new NotFoundException(nameof(Exchange), request.startDateTime, request.endDateTime);
