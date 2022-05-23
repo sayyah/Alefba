@@ -1,4 +1,6 @@
-﻿using Alefba.Application.Features.Exchange.Requests.Commands;
+﻿using Alefba.Application.Exceptions;
+using Alefba.Application.Features.Exchange.Requests.Commands;
+using Alefba.Application.Responses;
 using Alefba.Application.Validators;
 using Alefba.Domain.Entities;
 using Alefba.Domain.Interfaces;
@@ -12,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Alefba.Application.Handlers
 {
-    public class CreateExchangeRequestHandler : IRequestHandler<CreateExchangeCommand, Guid>
+    public class CreateExchangeRequestHandler : IRequestHandler<CreateExchangeCommand, CreateResponse>
     {
         private readonly IExchangeRepository _exchangeRepository;
         private readonly IMapper _mapper;
@@ -23,17 +25,29 @@ namespace Alefba.Application.Handlers
             _mapper = mapper;
         }
 
-        public async Task<Guid> Handle(CreateExchangeCommand request, CancellationToken cancellationToken)
+        public async Task<CreateResponse> Handle(CreateExchangeCommand request, CancellationToken cancellationToken)
         {
+            var response = new CreateResponse();
+
             var validator = new CreateExchangeCommandValidator();
             var validatorResult = await validator.ValidateAsync(request);
 
             if (validatorResult.IsValid == false)
-                throw new Exception();
+            {
+                //throw new ValidationException(validatorResult);
+
+                response.Success = false;
+                response.Message = "Creation failed";
+                response.Errors = validatorResult.Errors.Select(q=>q.ErrorMessage).ToList();
+            }
 
             var exchange = _mapper.Map<Exchange>(request);
             exchange = await _exchangeRepository.Add(exchange);
-            return exchange.Id;
+
+            response.Success = true;
+            response.Message = "Creation successful";
+            response.Id= exchange.Id;
+            return response;
         }
 
     }

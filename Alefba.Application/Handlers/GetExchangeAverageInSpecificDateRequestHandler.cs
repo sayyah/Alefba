@@ -1,7 +1,9 @@
 ﻿using Alefba.Application.DTOs;
+using Alefba.Application.Exceptions;
 using Alefba.Application.Persistence.Contracts;
 using Alefba.Application.Queries;
 using Alefba.Application.Validators;
+using Alefba.Domain.Entities;
 using Alefba.Domain.Interfaces;
 using AutoMapper;
 using MediatR;
@@ -30,10 +32,14 @@ namespace Alefba.Application.Handlers
             var validatorResult = await validator.ValidateAsync(request);
 
             if (validatorResult.IsValid == false)
-                throw new Exception();
+                throw new ValidationException(validatorResult);
 
-            var exchanges = await _exchangeRepository.GetInSpecificDate(request.startDateTime, request.endDateTime);
-            return exchanges;
+            var average = await _exchangeRepository.GetInSpecificDate(request.startDateTime, request.endDateTime);
+
+            if (average == 0.0)
+                throw new NotFoundException(nameof(Exchange), request.startDateTime, request.endDateTime);
+
+            return average;
         }
     }
 }
