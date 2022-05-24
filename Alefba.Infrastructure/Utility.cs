@@ -13,15 +13,21 @@ namespace Alefba.Infrastructure
 {
     public static class Utility
     {
-        public static string GetHtml(string url)
+       
+        public static IWebDriver LoadBrowser()
+        {
+            var options = new ChromeOptions();
+            options.AddArguments("headless");
+            IWebDriver driver = new ChromeDriver(@"C:\Program Files\Google\Chrome\Application", options);
+            return driver;
+        }
+        public static string GetHtml(this IWebDriver driver,string url)
         {
             //var options = new ChromeOptions
             //{
             //    BinaryLocation = @"C:\Program Files\Google\Chrome\Application"
             //};
-            var options = new ChromeOptions();
-            options.AddArguments("headless");
-            IWebDriver driver = new ChromeDriver(@"C:\Program Files\Google\Chrome\Application", options);
+           
             //var chrome = new ChromeDriver(options);
             driver.Navigate().GoToUrl(url);
 

@@ -27,6 +27,9 @@ namespace Alefba.Application.Handlers
             if (validatorResult.IsValid == false)
                 throw new ValidationException(validatorResult);
 
+            if (request.Rate <= 0)
+                return new Guid();
+
             var exchange = _mapper.Map<Exchange>(request);
             await _unitOfWork.ExchangeRepository.Add(exchange, cancellationToken);
             await _unitOfWork.Commit();

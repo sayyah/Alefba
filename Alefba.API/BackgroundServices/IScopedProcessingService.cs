@@ -24,7 +24,6 @@ namespace Alefba.API.BackgroundServices
             while (!cancellationToken.IsCancellationRequested)
             {
                 var createExchangeCommand = await _webScraper.GetDate();
-                createExchangeCommand.DateTime = DateTime.UtcNow;
 
                 await _mediator.Send(createExchangeCommand);
                 await Task.Delay(3000, cancellationToken);
