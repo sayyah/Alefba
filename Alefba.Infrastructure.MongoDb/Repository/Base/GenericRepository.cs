@@ -23,27 +23,23 @@ namespace Alefba.Infrastructure.MongoDb.Repository.Base
             return data.SingleOrDefault();
         }
 
-        public void Add(TEntity entity, CancellationToken cancellationToken)
+        public async Task Add(TEntity entity, CancellationToken cancellationToken)
         {
-            _context.AddCommand(async () => await DbSet.InsertOneAsync(entity, cancellationToken: cancellationToken));
+            await DbSet.InsertOneAsync(entity, cancellationToken: cancellationToken);
         }
 
         public async Task<TEntity> Update(TEntity entity, CancellationToken cancellationToken)
         {
             var filter = Builders<TEntity>.Filter.Eq(f => f.Id, entity.Id);
 
-            _context.AddCommand(async () =>
-            {
-                await DbSet.ReplaceOneAsync(filter, entity, cancellationToken: cancellationToken);
-            });
+            await DbSet.ReplaceOneAsync(filter, entity, cancellationToken: cancellationToken);
 
             return (await GetById(entity.Id, cancellationToken))!;
         }
 
-        public virtual void Delete(TEntity entity, CancellationToken cancellationToken)
+        public async Task Delete(TEntity entity, CancellationToken cancellationToken)
         {
-            _context.AddCommand(async () =>
-             await DbSet.DeleteOneAsync(f => f.Id.Equals(entity.Id), cancellationToken: cancellationToken));
+             await DbSet.DeleteOneAsync(f => f.Id.Equals(entity.Id), cancellationToken: cancellationToken);
         }
     }
 }

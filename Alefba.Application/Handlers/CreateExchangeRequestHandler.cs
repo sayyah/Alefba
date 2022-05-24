@@ -28,7 +28,7 @@ namespace Alefba.Application.Handlers
                 throw new ValidationException(validatorResult);
 
             var exchange = _mapper.Map<Exchange>(request);
-            _unitOfWork.ExchangeRepository.Add(exchange, cancellationToken);
+            await _unitOfWork.ExchangeRepository.Add(exchange, cancellationToken);
             await _unitOfWork.Commit();
 
             return exchange.Id;

@@ -1,3 +1,4 @@
+using Alefba.API.BackgroundServices;
 using Alefba.API.Middleware;
 using Alefba.Application;
 using Alefba.Infrastructure;
@@ -19,6 +20,9 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.ConfigureInfrastructureMongoDbServices(builder.Configuration);
 builder.Services.ConfigureInfrastructureServices();
 builder.Services.ConfigureApplicationServices();
+
+builder.Services.AddHostedService<GetCurrencyRateBackgroundService>();
+builder.Services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
 
 var app = builder.Build();
 

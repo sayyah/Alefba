@@ -1,6 +1,6 @@
 ﻿namespace Alefba.Application.Interfaces
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
         IExchangeRepository ExchangeRepository { get; }
         Task Commit();

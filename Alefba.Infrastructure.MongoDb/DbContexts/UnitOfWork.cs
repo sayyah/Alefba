@@ -17,16 +17,11 @@ namespace Alefba.Infrastructure.MongoDb.DbContexts
 
         public async Task Commit()
         {
-            if (await _context.SaveChanges() == 0)
-                throw new CustomException(HttpStatusCode.InternalServerError);
+            return;
         }
 
         public IExchangeRepository ExchangeRepository => _exchangeRepository ??= new ExchangeRepository(_context);
 
-        public void Dispose()
-        {
-            _context.Dispose();
-            GC.SuppressFinalize(this);
-        }
+    
     }
 }

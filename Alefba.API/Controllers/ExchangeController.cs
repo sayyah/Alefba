@@ -30,9 +30,7 @@ namespace Alefba.API.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] CreateExchangeCommand command)
         {
-            command.DateTime = DateTime.UtcNow;
-            command.Rate = 255970;
-            command.Symbol = "USD";
+            //command.DateTime = DateTime.UtcNow;
             var response = await _mediator.Send(command);
             return Ok(response);
         }
