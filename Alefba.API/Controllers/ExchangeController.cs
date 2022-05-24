@@ -1,10 +1,6 @@
 ﻿using Alefba.Application.Features.Exchange.Requests.Commands;
 using Alefba.Application.Queries;
-using Alefba.Domain.Interfaces;
-using Alefba.Infrastructure.MongoDb.DbContexts;
-using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Alefba.API.Controllers
@@ -21,7 +17,7 @@ namespace Alefba.API.Controllers
         }
 
         [HttpGet("AverageBetween/{startDateTime:DateTime}/{endDateTime:DateTime}")]
-        public async Task<ActionResult<double>> GetAverage(DateTime startDateTime,DateTime endDateTime)
+        public async Task<ActionResult<double>> GetAverage(DateTime startDateTime, DateTime endDateTime)
         {
             var request = new GetExchangeAverageInSpecificDateRequest();
             request.startDateTime = startDateTime;

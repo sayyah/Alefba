@@ -1,16 +1,10 @@
-﻿using Alefba.Application.DTOs;
-using Alefba.Application.Exceptions;
+﻿using Alefba.Application.Exceptions;
 using Alefba.Application.Queries;
 using Alefba.Application.Validators;
 using Alefba.Domain.Entities;
 using Alefba.Domain.Interfaces;
 using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Alefba.Application.Handlers
 {
@@ -19,7 +13,7 @@ namespace Alefba.Application.Handlers
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public GetExchangeAverageInSpecificDateRequestHandler( IMapper mapper, IUnitOfWork unitOfWork)
+        public GetExchangeAverageInSpecificDateRequestHandler(IMapper mapper, IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;

@@ -1,6 +1,4 @@
-﻿using Alefba.Application.DTOs;
-using Alefba.Application.Responses;
-using MediatR;
+﻿using MediatR;
 
 namespace Alefba.Application.Features.Exchange.Requests.Commands
 {

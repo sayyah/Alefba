@@ -1,15 +1,9 @@
-﻿using Alefba.Application.DTOs;
-using Alefba.Application.Features.Exchange.Requests.Commands;
+﻿using Alefba.Application.Features.Exchange.Requests.Commands;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Alefba.Application.Validators
 {
-    public class CreateExchangeCommandValidator:AbstractValidator<CreateExchangeCommand>
+    public class CreateExchangeCommandValidator : AbstractValidator<CreateExchangeCommand>
     {
         public CreateExchangeCommandValidator()
         {

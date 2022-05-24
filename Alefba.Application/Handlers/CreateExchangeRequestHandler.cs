@@ -1,16 +1,10 @@
 ﻿using Alefba.Application.Exceptions;
 using Alefba.Application.Features.Exchange.Requests.Commands;
-using Alefba.Application.Responses;
 using Alefba.Application.Validators;
 using Alefba.Domain.Entities;
 using Alefba.Domain.Interfaces;
 using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Alefba.Application.Handlers
 {

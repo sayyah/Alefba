@@ -8,7 +8,7 @@ namespace Alefba.Infrastructure.MongoDb.DbContexts
     public class UnitOfWork : IUnitOfWork
     {
         private readonly IDbContext _context;
-        private  IExchangeRepository _exchangeRepository;
+        private IExchangeRepository _exchangeRepository;
 
         public UnitOfWork(IDbContext context)
         {

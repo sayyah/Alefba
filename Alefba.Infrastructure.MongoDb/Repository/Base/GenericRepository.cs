@@ -1,17 +1,11 @@
 ﻿using Alefba.Domain;
 using Alefba.Domain.Interfaces;
-using Alefba.Infrastructure.MongoDb.DbContexts;
 using Alefba.Infrastructure.MongoDb.Utilities;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Alefba.Infrastructure.MongoDb.Repository.Base
 {
-    public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity: BaseDomainEntity
+    public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseDomainEntity
     {
         private readonly IDbContext _context;
         protected readonly IMongoCollection<TEntity> DbSet;
@@ -22,14 +16,14 @@ namespace Alefba.Infrastructure.MongoDb.Repository.Base
             DbSet = (IMongoCollection<TEntity>)_context.GetCollection<TEntity>(typeof(TEntity).GetName());
         }
 
-        public async Task<TEntity?> GetById(Guid id,CancellationToken cancellationToken)
+        public async Task<TEntity?> GetById(Guid id, CancellationToken cancellationToken)
         {
             var data = await DbSet.FindAsync(Builders<TEntity>.Filter.Eq(f => f.Id, id), cancellationToken: cancellationToken);
 
             return data.SingleOrDefault();
         }
 
-        public void Add(TEntity entity,CancellationToken cancellationToken)
+        public void Add(TEntity entity, CancellationToken cancellationToken)
         {
             _context.AddCommand(async () => await DbSet.InsertOneAsync(entity, cancellationToken: cancellationToken));
         }
