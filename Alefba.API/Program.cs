@@ -1,3 +1,4 @@
+using Alefba.API.Middleware;
 using Alefba.Application;
 using Alefba.Infrastructure;
 using Alefba.Infrastructure.MongoDb;
@@ -26,6 +27,8 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Alefba.API v1"));
