@@ -17,13 +17,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alefba.Domain", "Alefba.Dom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alefba.Application", "Alefba.Application\Alefba.Application.csproj", "{43A417F7-B8BB-4D9E-8637-823343F13059}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alefba.Infrastructure", "Alefba.Infrastructure\Alefba.Infrastructure.csproj", "{0F81F766-F1F4-43F1-B756-E71B7CD45DE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alefba.Infrastructure", "Alefba.Infrastructure\Alefba.Infrastructure.csproj", "{0F81F766-F1F4-43F1-B756-E71B7CD45DE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alefba.Infrastructure.MongoDb", "Alefba.Infrastructure.MongoDb\Alefba.Infrastructure.MongoDb.csproj", "{7D0EEB0C-BE35-4695-8E66-D712F49ACC5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alefba.Infrastructure.MongoDb", "Alefba.Infrastructure.MongoDb\Alefba.Infrastructure.MongoDb.csproj", "{7D0EEB0C-BE35-4695-8E66-D712F49ACC5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alefba.API", "Alefba.API\Alefba.API.csproj", "{DA6F04B0-6361-4E8D-9D65-9D3270CB12E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alefba.API", "Alefba.API\Alefba.API.csproj", "{DA6F04B0-6361-4E8D-9D65-9D3270CB12E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alefba.Infrastracture.Test", "Alefba.Infrastracture.Test\Alefba.Infrastracture.Test.csproj", "{94750607-3B26-469D-9EF7-B2005BC2A74F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alefba.Application.UnitTests", "Alefba.Application.UnitTests\Alefba.Application.UnitTests.csproj", "{49A88EFA-353E-4134-B4E6-C6B96468798E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alefba.Infrastructure.XunitTests", "Alefba.Infrastructure.XunitTests\Alefba.Infrastructure.XunitTests.csproj", "{1063703A-A78D-4B2A-AAFB-782F54AFD144}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,10 +53,14 @@ Global
 		{DA6F04B0-6361-4E8D-9D65-9D3270CB12E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA6F04B0-6361-4E8D-9D65-9D3270CB12E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA6F04B0-6361-4E8D-9D65-9D3270CB12E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{94750607-3B26-469D-9EF7-B2005BC2A74F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{94750607-3B26-469D-9EF7-B2005BC2A74F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{94750607-3B26-469D-9EF7-B2005BC2A74F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{94750607-3B26-469D-9EF7-B2005BC2A74F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49A88EFA-353E-4134-B4E6-C6B96468798E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49A88EFA-353E-4134-B4E6-C6B96468798E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49A88EFA-353E-4134-B4E6-C6B96468798E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49A88EFA-353E-4134-B4E6-C6B96468798E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1063703A-A78D-4B2A-AAFB-782F54AFD144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1063703A-A78D-4B2A-AAFB-782F54AFD144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1063703A-A78D-4B2A-AAFB-782F54AFD144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1063703A-A78D-4B2A-AAFB-782F54AFD144}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,7 +74,8 @@ Global
 		{0F81F766-F1F4-43F1-B756-E71B7CD45DE5} = {608C8E25-5236-46AA-8CF5-59BD88B059F5}
 		{7D0EEB0C-BE35-4695-8E66-D712F49ACC5A} = {608C8E25-5236-46AA-8CF5-59BD88B059F5}
 		{DA6F04B0-6361-4E8D-9D65-9D3270CB12E4} = {C50B491E-2E58-402F-B688-5C281BDDCC2C}
-		{94750607-3B26-469D-9EF7-B2005BC2A74F} = {F795CA5B-AAD9-4068-AE40-BAA8654E84B9}
+		{49A88EFA-353E-4134-B4E6-C6B96468798E} = {F795CA5B-AAD9-4068-AE40-BAA8654E84B9}
+		{1063703A-A78D-4B2A-AAFB-782F54AFD144} = {F795CA5B-AAD9-4068-AE40-BAA8654E84B9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {45550055-FFA2-4DF5-A93F-A9D68AFF786B}

@@ -1,5 +1,5 @@
 ﻿using Alefba.Domain.Entities;
-using Alefba.Domain.Interfaces;
+using Alefba.Application.Interfaces;
 using Alefba.Infrastructure.MongoDb.Repository.Base;
 using MongoDB.Driver;
 

@@ -1,4 +1,4 @@
-﻿using Alefba.Domain.Interfaces;
+﻿using Alefba.Application.Interfaces;
 using Alefba.Infrastructure.MongoDb.DbContexts;
 using Alefba.Infrastructure.MongoDb.Repository;
 using Alefba.Infrastructure.MongoDb.Repository.Base;
@@ -13,7 +13,7 @@ namespace Alefba.Infrastructure.MongoDb
         {
             services.Configure<DbConfiguration>(configuration.GetSection("DbConfiguration"));
 
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            //services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             services.AddScoped<IDbContext, DbContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();

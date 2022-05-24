@@ -2,7 +2,7 @@
 using Alefba.Application.Queries;
 using Alefba.Application.Validators;
 using Alefba.Domain.Entities;
-using Alefba.Domain.Interfaces;
+using Alefba.Application.Interfaces;
 using AutoMapper;
 using MediatR;
 

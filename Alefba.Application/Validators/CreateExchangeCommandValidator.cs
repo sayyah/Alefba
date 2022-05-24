@@ -1,4 +1,4 @@
-﻿using Alefba.Application.Features.Exchange.Requests.Commands;
+﻿using Alefba.Application.Commands;
 using FluentValidation;
 
 namespace Alefba.Application.Validators
@@ -10,7 +10,7 @@ namespace Alefba.Application.Validators
             RuleFor(x => x.DateTime)
                 .NotEmpty().WithMessage("{PropertyName} is required")
                 .NotNull()
-                .GreaterThan(DateTime.Now).WithMessage("{PropertyName} is not a valid date");
+                .GreaterThan(DateTime.Now.AddDays(-1)).WithMessage("{PropertyName} is not a valid date");
 
             RuleFor(x => x.Rate)
               .NotEmpty().WithMessage("{PropertyName} is required")

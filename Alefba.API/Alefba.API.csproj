@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Alefba.Infrastructure\Alefba.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BackgroundServices\" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,6 @@
 ﻿using Alefba.Domain.Entities;
 
-namespace Alefba.Domain.Interfaces
+namespace Alefba.Application.Interfaces
 {
     public interface IExchangeRepository : IGenericRepository<Exchange>
     {

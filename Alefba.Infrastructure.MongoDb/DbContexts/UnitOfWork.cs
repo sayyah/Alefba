@@ -1,5 +1,5 @@
 ﻿using Alefba.Application.Exceptions;
-using Alefba.Domain.Interfaces;
+using Alefba.Application.Interfaces;
 using Alefba.Infrastructure.MongoDb.Repository;
 using System.Net;
 

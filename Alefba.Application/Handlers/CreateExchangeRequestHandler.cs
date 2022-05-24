@@ -1,8 +1,8 @@
 ﻿using Alefba.Application.Exceptions;
-using Alefba.Application.Features.Exchange.Requests.Commands;
+using Alefba.Application.Commands;
 using Alefba.Application.Validators;
 using Alefba.Domain.Entities;
-using Alefba.Domain.Interfaces;
+using Alefba.Application.Interfaces;
 using AutoMapper;
 using MediatR;
 

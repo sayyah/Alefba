@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Alefba.Application.Features.Exchange.Requests.Commands
+namespace Alefba.Application.Commands
 {
     public class CreateExchangeCommand : IRequest<Guid>
     {

@@ -1,4 +1,4 @@
-﻿using Alefba.Domain.Interfaces;
+﻿using Alefba.Application.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Alefba.Infrastructure
@@ -7,7 +7,7 @@ namespace Alefba.Infrastructure
     {
         public static IServiceCollection ConfigureInfrastructureServices(this IServiceCollection services)
         {
-            services.AddTransient(typeof(IWebScraper<>), typeof(WebScraper<>));
+            services.AddTransient<IWebScraper, WebScraper>();
 
             return services;
         }

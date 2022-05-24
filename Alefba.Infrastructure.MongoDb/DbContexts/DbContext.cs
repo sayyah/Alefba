@@ -1,4 +1,4 @@
-﻿using Alefba.Domain.Interfaces;
+﻿using Alefba.Application.Interfaces;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
@@ -9,6 +9,7 @@ namespace Alefba.Infrastructure.MongoDb.DbContexts
 {
     public class DbContext : IDbContext
     {
+
         private IMongoDatabase Database { get; set; }
         public MongoClient MongoClient { get; set; }
         private readonly List<Func<Task>> _commands;
@@ -64,10 +65,10 @@ namespace Alefba.Infrastructure.MongoDb.DbContexts
 
         public void Dispose()
         {
-            while (Session is { IsInTransaction: true })
-                Thread.Sleep(TimeSpan.FromMilliseconds(100));
+            //while (Session is { IsInTransaction: true })
+            //    Thread.Sleep(TimeSpan.FromMilliseconds(100));
 
-            GC.SuppressFinalize(this);
+            //GC.SuppressFinalize(this);
         }
 
         public void AddCommand(Func<Task> func)

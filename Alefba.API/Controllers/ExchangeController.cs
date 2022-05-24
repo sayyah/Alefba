@@ -1,4 +1,4 @@
-﻿using Alefba.Application.Features.Exchange.Requests.Commands;
+﻿using Alefba.Application.Commands;
 using Alefba.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +30,9 @@ namespace Alefba.API.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] CreateExchangeCommand command)
         {
+            command.DateTime = DateTime.UtcNow;
+            command.Rate = 255970;
+            command.Symbol = "USD";
             var response = await _mediator.Send(command);
             return Ok(response);
         }

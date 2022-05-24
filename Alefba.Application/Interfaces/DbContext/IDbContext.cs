@@ -1,4 +1,4 @@
-﻿namespace Alefba.Domain.Interfaces
+﻿namespace Alefba.Application.Interfaces
 {
     public interface IDbContext
     {
