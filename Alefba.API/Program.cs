@@ -15,6 +15,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Alefba assessment API", Version = "v1" });
+    var filePath = Path.Combine(AppContext.BaseDirectory, "Alefba.API.xml");
+    c.IncludeXmlComments(filePath);
 });
 
 builder.Services.ConfigureInfrastructureMongoDbServices(builder.Configuration);

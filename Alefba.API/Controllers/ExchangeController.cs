@@ -17,12 +17,11 @@ namespace Alefba.API.Controllers
         }
 
         /// <summary>
-        /// give 2 datetime and retun average of UDS rate
         /// Please enter UTC date and time
         /// </summary>
         /// <param name="startDateTime">Please enter UTC date and time</param>
         /// <param name="endDateTime">Please enter UTC date and time</param>
-        /// <returns></returns>
+        /// <returns>double</returns>
         [HttpGet("AverageBetween/{startDateTime:DateTime}/{endDateTime:DateTime}")]
         public async Task<ActionResult<double>> GetAverage(DateTime startDateTime, DateTime endDateTime)
         {
