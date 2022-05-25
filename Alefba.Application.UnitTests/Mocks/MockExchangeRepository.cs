@@ -1,37 +1,44 @@
 ﻿using Alefba.Application.Interfaces;
 using Alefba.Domain.Entities;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Alefba.Application.UnitTests.Mocks
 {
-    public static class MockExchangeRepository
+    public class MockExchangeRepository:IExchangeRepository
     {
-        public static Mock<IExchangeRepository> GetExchangeRepository()
+        private readonly List<Exchange> _exchanges;
+        public MockExchangeRepository()
         {
-            var exchanges = new List<Exchange>
+            _exchanges = new List<Exchange>
             {
                 new Exchange(255000,"USD"),
                 new Exchange(250000,"USD")
             };
+        }
+        public async Task<double> GetAverageInSpecificDate(DateTime startDateTime, DateTime endDateTime)
+        {
+            var average = _exchanges.Where(d => d.DateTime >= startDateTime && d.DateTime <= endDateTime)
+                .Average(g => g.Rate);
+            return average;
+        }
 
+        public async Task<Exchange?> GetById(Guid id, CancellationToken cancellationToke)
+        {
+            return _exchanges.FirstOrDefault(x => x.Id == id);
+        }
 
-            var mockRepository = new Mock<IExchangeRepository>();
+        public async Task Add(Exchange entity, CancellationToken cancellationToke)
+        {
+            _exchanges.Add(entity);
+        }
 
-            mockRepository.Setup(r =>  r.GetAverageInSpecificDate(It.IsAny<Exchange>().DateTime, It.IsAny<Exchange>().DateTime))
-                .ReturnsAsync(exchanges.Average(x => x.Rate));
+        public Task<Exchange> Update(Exchange entity, CancellationToken cancellationToke)
+        {
+            throw new NotImplementedException();
+        }
 
-            mockRepository.Setup(r => r.Add(It.IsAny<Exchange>(), CancellationToken.None)).Returns((Exchange exchange) =>
-            {
-                exchanges.Add(exchange);
-                return exchange.Id;
-            });
-
-            return mockRepository;
+        public Task Delete(Exchange entity, CancellationToken cancellationToke)
+        {
+            throw new NotImplementedException();
         }
     }
 }

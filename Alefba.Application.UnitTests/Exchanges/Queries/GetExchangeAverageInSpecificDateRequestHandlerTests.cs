@@ -1,10 +1,11 @@
-﻿using Alefba.Application.Handlers;
+﻿using Alefba.Application.Commands;
+using Alefba.Application.Handlers;
 using Alefba.Application.Interfaces;
 using Alefba.Application.Profiles;
 using Alefba.Application.Queries;
 using Alefba.Application.UnitTests.Mocks;
+using Alefba.Domain.Entities;
 using AutoMapper;
-using Moq;
 using Shouldly;
 
 namespace Alefba.Application.UnitTests.Exchanges.Queries
@@ -12,13 +13,15 @@ namespace Alefba.Application.UnitTests.Exchanges.Queries
     public class GetExchangeAverageInSpecificDateRequestHandlerTests
     {
         private readonly IMapper _mapper;
-        private readonly Mock<IExchangeRepository> _mockRepository;
-        private readonly Mock<IUnitOfWork> _unitOfWork;
-        private readonly GetExchangeAverageInSpecificDateRequestHandler handler;
+        private readonly IExchangeRepository _mockRepository;
+        private readonly IUnitOfWork _mockUnitOfWork;
+        private readonly GetExchangeAverageInSpecificDateRequestHandler handlerAverage;
+        private readonly CreateExchangeRequestHandler handlerCreate;
+
         public GetExchangeAverageInSpecificDateRequestHandlerTests()
         {
             //arrange
-            _mockRepository = MockExchangeRepository.GetExchangeRepository();
+            _mockRepository = new MockExchangeRepository();
 
             var mapperConfig = new MapperConfiguration(c =>
             {
@@ -27,22 +30,37 @@ namespace Alefba.Application.UnitTests.Exchanges.Queries
 
             _mapper = mapperConfig.CreateMapper();
 
-            _unitOfWork =  MockUnitOfWork.GetUnitOfWork(_mockRepository.Object);
+            _mockUnitOfWork = new MockUnitOfWork(_mockRepository);
 
-            handler = new GetExchangeAverageInSpecificDateRequestHandler(_mapper, _unitOfWork.Object);
+            handlerAverage = new GetExchangeAverageInSpecificDateRequestHandler(_mapper, _mockUnitOfWork);
+            handlerCreate = new CreateExchangeRequestHandler(_mapper, _mockUnitOfWork);
         }
 
         [Fact]
-        public async Task GetExchangeAverageInSpecificDateRequestHandler_should_retuen_average()
+        public async Task GetExchangeAverageInSpecificDateRequestHandler_should_returen_average()
         {
             //arrange
             double expect = 252500;
-
+            var command = new GetExchangeAverageInSpecificDateRequest(DateTime.UtcNow.AddDays(-1), DateTime.UtcNow.AddDays(+1));
+            
             //act
-            var result = await handler.Handle(new GetExchangeAverageInSpecificDateRequest(DateTime.UtcNow.AddDays(-1), DateTime.UtcNow.AddDays(+1)), CancellationToken.None);
+            var actual = await handlerAverage.Handle(command, CancellationToken.None);
 
             //assert
-            result.ShouldBe(expect);
+            actual.ShouldBe(expect);
+        }
+
+        [Fact]
+        public async Task Add_should_returen_Guid()
+        {
+            //arrange
+            var createExchangeCommand = new CreateExchangeCommand(260000, "USD");
+
+            //act
+            var actual = await handlerCreate.Handle(createExchangeCommand, CancellationToken.None);
+
+            //assert
+            Assert.IsType<Guid>(actual);
         }
     }
 }
