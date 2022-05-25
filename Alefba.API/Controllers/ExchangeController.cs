@@ -16,16 +16,22 @@ namespace Alefba.API.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// give 2 datetime and retun average of UDS rate
+        /// Please enter UTC date and time
+        /// </summary>
+        /// <param name="startDateTime">Please enter UTC date and time</param>
+        /// <param name="endDateTime">Please enter UTC date and time</param>
+        /// <returns></returns>
         [HttpGet("AverageBetween/{startDateTime:DateTime}/{endDateTime:DateTime}")]
         public async Task<ActionResult<double>> GetAverage(DateTime startDateTime, DateTime endDateTime)
         {
-            var request = new GetExchangeAverageInSpecificDateRequest();
-            request.startDateTime = startDateTime;
-            request.endDateTime = endDateTime;
+            var request = new GetExchangeAverageInSpecificDateRequest(startDateTime, endDateTime);
 
             var average = await _mediator.Send(request);
             return Ok(average);
         }
+
 
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] CreateExchangeCommand command)

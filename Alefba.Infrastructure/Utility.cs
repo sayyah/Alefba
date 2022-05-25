@@ -23,17 +23,11 @@ namespace Alefba.Infrastructure
         }
         public static string GetHtml(this IWebDriver driver,string url)
         {
-            //var options = new ChromeOptions
-            //{
-            //    BinaryLocation = @"C:\Program Files\Google\Chrome\Application"
-            //};
-           
-            //var chrome = new ChromeDriver(options);
             driver.Navigate().GoToUrl(url);
 
-            IWait<IWebDriver> wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30.00));
+            //IWait<IWebDriver> wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30.00));
 
-            wait.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
+            //wait.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
 
             return driver.PageSource;
         }

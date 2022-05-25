@@ -4,6 +4,6 @@ namespace Alefba.Application.Interfaces
 {
     public interface IWebScraper
     {
-        Task<CreateExchangeCommand> GetDate();
+        Task<CreateExchangeCommand> GetDate(string url);
     }
 }

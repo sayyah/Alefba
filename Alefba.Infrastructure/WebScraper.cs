@@ -13,9 +13,9 @@ namespace Alefba.Infrastructure
         {
             _driver = Utility.LoadBrowser();
         }
-        public async  Task<CreateExchangeCommand> GetDate()
+    
+        public async  Task<CreateExchangeCommand> GetDate(string url)
         {
-            var url = "http://mex.co.ir";
 
             var html = _driver.GetHtml(url);
             var data = Utility.ParseHtmlUsingHtmlAgilityPack(html);

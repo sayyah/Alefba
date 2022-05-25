@@ -1,9 +1,5 @@
 ﻿using Alefba.Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Shouldly;
 
 namespace Alefba.Infrastructure.XunitTests
 {
@@ -11,19 +7,22 @@ namespace Alefba.Infrastructure.XunitTests
     {
         private readonly IWebScraper _webScraper;
         public WebScraperTests()
-        {
+        {   
+            //arrange
             _webScraper = new WebScraper();
         }
 
         [Fact]
         public async Task GetData()
         {
+            //arrange
+            var expect = "USD";
 
             //Act
-            var actual =await _webScraper.GetDate();
+            var actual =await _webScraper.GetDate("http://mex.co.ir");
 
             //Assert
-            Assert.Equal("USD", actual.Symbol);
+            actual.Symbol.ShouldBe(expect);
         }
     }
 }

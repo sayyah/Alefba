@@ -23,9 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alefba.Infrastructure.Mongo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alefba.API", "Alefba.API\Alefba.API.csproj", "{DA6F04B0-6361-4E8D-9D65-9D3270CB12E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alefba.Application.UnitTests", "Alefba.Application.UnitTests\Alefba.Application.UnitTests.csproj", "{49A88EFA-353E-4134-B4E6-C6B96468798E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alefba.Application.UnitTests", "Alefba.Application.UnitTests\Alefba.Application.UnitTests.csproj", "{49A88EFA-353E-4134-B4E6-C6B96468798E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alefba.Infrastructure.XunitTests", "Alefba.Infrastructure.XunitTests\Alefba.Infrastructure.XunitTests.csproj", "{1063703A-A78D-4B2A-AAFB-782F54AFD144}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alefba.Infrastructure.XunitTests(TDD)", "Alefba.Infrastructure.XunitTests\Alefba.Infrastructure.XunitTests(TDD).csproj", "{1063703A-A78D-4B2A-AAFB-782F54AFD144}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -24,12 +24,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Exchange\" />
-    <Folder Include="Mocks\" />
+    <Folder Include="Exchanges\Commands\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Alefba.Application\Alefba.Application.csproj" />
     <ProjectReference Include="..\Alefba.Domain\Alefba.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="chromedriver.exe">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
