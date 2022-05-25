@@ -18,7 +18,7 @@ namespace Alefba.Infrastructure
         {
             var options = new ChromeOptions();
             options.AddArguments("headless");
-            IWebDriver driver = new ChromeDriver(@"C:\Program Files\Google\Chrome\Application", options);
+            IWebDriver driver = new ChromeDriver(Environment.CurrentDirectory, options);
             return driver;
         }
         public static string GetHtml(this IWebDriver driver,string url)
